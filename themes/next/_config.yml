@@ -385,18 +385,18 @@ back2top:
   # Back to top in sidebar.
   sidebar: false
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
 # Reading progress bar
 reading_progress:
-  enable: false
+  enable: true
   # Available values: left | right
   start_at: left
   # Available values: top | bottom
-  position: top
+  position: bottom
   reversed: false
-  color: "#37c6c0"
-  height: 3px
+  color: "#212e6b"
+  height: 5px
 
 # Bookmark Support
 bookmark:
@@ -641,7 +641,7 @@ motion:
 # Progress bar in the top during page loading.
 # For more information: https://github.com/CodeByZach/pace
 pace:
-  enable: false
+  enable: flase
   # All available colors:
   # black | blue | green | orange | pink | purple | red | silver | white | yellow
   color: blue
