@@ -3,6 +3,7 @@ title: 色碼電阻的歐姆計算
 date: 2024-09-17 23:02:28
 mathjax: true
 tags:
+description: 計算色碼電阻的歐姆的方式。
 ---
 
 ## 電阻的色環
