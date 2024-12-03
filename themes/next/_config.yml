@@ -160,12 +160,14 @@ social:
   GitHub: https://github.com/NoahsarkTaiwan2008 || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
-  Twitter: https://x.com/NoahsarkTaiwan || fab fa-twitter
+  X: https://x.com/NoahsarkTaiwan || fab fa-x-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
   YouTube: https://www.youtube.com/@noahsarktaiwan || fab fa-youtube
   #Instagram: https://instagram.com/yourname || fab fa-instagram
   #Skype: skype:yourname?call|chat || fab fa-skype
+  Website: https://noahsarktaiwan2008.github.io || fas fa-globe
+
 
 social_icons:
   enable: true
@@ -928,3 +930,21 @@ images: images
 
 sitemap:
   path: sitemap.xml
+
+# Darkmode JS
+# For more information: https://github.com/rqh656418510/hexo-next-darkmode, https://github.com/sandoche/Darkmode.js
+darkmode_js:
+  enable: true
+  bottom: '64px' # 距離底端的距離
+  right: 'unset' # 距離右邊的距離(unset就是只需要設定左邊，右邊會自己調整)
+  left: '32px' # 距離左邊的距離(unset就是只需要設定右邊，左邊會自己調整)
+  time: '0.5s' # 切換深淺模式的時間
+  mixColor: 'transparent' # 這個建議不要用，雖然會出現酷酷的一個往外擴散的效果，可是他的顏色會跟原本的背景混再一起，有時候還會讓字不清楚，想玩的可以自己改改看
+  backgroundColor: 'transparent' #背景顏色
+  buttonColorDark: '#100f2c' # 在淺色模式的時候按鈕的顏色
+  buttonColorLight: '#fff' # 在深色模式的時候按鈕的顏色
+  isActivated: false # 這裡如果用true的話是可以自己改寫他的CSS，但我覺得應該沒有必要，詳細可以看github的內的介紹
+  saveInCookies: true # 會儲存到Cookies內，下次來會依照上次你的設定切換到深淺模式
+  label: '🌓' # 可以改成自己像要的表情圖示
+  autoMatchOsTheme: true # 自動切換到跟使用者裝置相同的深淺模式
+  libUrl: # Set custom library cdn url for Darkmode.js
