@@ -100,10 +100,16 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+# deploy:
+#   type: git
+#   repo: https://github.com/NoahsarkTaiwan2008/NoahsarkTaiwan2008.github.io.git
+#   branch: main
 deploy:
   type: git
-  repo: https://github.com/NoahsarkTaiwan2008/NoahsarkTaiwan2008.github.io.git
-  branch: main
+  repo: 
+    github:
+      url: 'git@github.com:NoahsarkTaiwan2008/NoahsarkTaiwan2008.github.io.git'
+      branch: main
 
 symbols_count_time:
   symbols: true # 文章字數統計顯示
@@ -114,3 +120,6 @@ symbols_count_time:
   awl: 5  # 平均文字長度，中文為 2, 英文為 5, 預設為 4
   wpm: 275  # 一分鐘閱讀字數
   suffix: "分鐘"
+
+sitemap:
+  path: sitemap.xml

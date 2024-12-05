@@ -101,8 +101,8 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
-  schedule: /schedule/ || fa fa-calendar
-  sitemap: /sitemap.xml || fa fa-sitemap
+  # schedule: /schedule/ || fa fa-calendar
+  #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 
 # Enable / Disable menu icons / item badges.
@@ -928,8 +928,7 @@ css: css
 js: js
 images: images
 
-sitemap:
-  path: sitemap.xml
+
 
 # Darkmode JS
 # For more information: https://github.com/rqh656418510/hexo-next-darkmode, https://github.com/sandoche/Darkmode.js
@@ -948,3 +947,7 @@ darkmode_js:
   label: '🌓' # 可以改成自己像要的表情圖示
   autoMatchOsTheme: true # 自動切換到跟使用者裝置相同的深淺模式
   libUrl: # Set custom library cdn url for Darkmode.js
+
+canvas_nest:
+  enable: true
+  color: 0,0,255
