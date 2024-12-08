@@ -17,6 +17,9 @@ categories:
 C語言的編譯器是`gcc`或是`clang`。
 開始前，先使用`gcc --version`檢查之前是否已經安裝過環境。如果出現錯誤，再進行下方的教學。
 
+!!! info
+    如果設定過了，可以直接跳到下面的教學
+
 ## windows(以MinGW舉例)
 *也可以看[vscode的教學](https://code.visualstudio.com/docs/cpp/config-mingw)*
 
