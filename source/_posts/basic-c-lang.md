@@ -9,6 +9,7 @@ tags:
 description: 一個簡單的C語言教學。
 categories:
  - 程式教學
+ - C
 ---
 
 # 開發環境設定
@@ -43,7 +44,7 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 點擊**使用者變數**的**Path**選項，然後按**編輯**:
 ![進入path](https://github.com/NoahsarkTaiwan2008/pic/blob/main/c-tutorial/pic3.png?raw=true)
 
-點擊**新增**並把安裝**MinGW**的位置貼上，預設安裝會是`C:\msys64\ucrt64\bin`，我是設定安裝在`D:\`。輸入完成後按**確定**。
+點擊**新增**並把安裝**MinGW**的位置貼上，預設安裝會是`C:\msys64\ucrt64\bin`，但因為我在安裝時是設定安裝在`D:\`，所以我設定的位置會是`C:\msys64\ucrt64\bin`(總之就是你在安裝時選擇安裝在哪裡，就輸入什麼位置)。輸入完成後按**確定**。
 ![新增環境變數](https://github.com/NoahsarkTaiwan2008/pic/blob/main/c-tutorial/pic4.png?raw=true)
 
 之後就一直點擊**確定**來退出。
@@ -115,9 +116,7 @@ int main() {
 # 輸出與輸入  
 在C語言中，輸出使用函式 `printf()`，而輸入則使用函式 `scanf()`。
 
----
-
-## `printf()` 函式  
+## printf()函式  
 `printf()` 用於在終端輸出文字或變數的值。
 
 ### 範例: 輸出文字
@@ -144,9 +143,7 @@ int main() {
 ```
 以上程式會將 `age` 的值插入到 `%d` 的位置，輸出結果為：`你16歲`。
 
----
-
-## `scanf()` 函式  
+## scanf()函式  
 `scanf()` 用於從終端讀取輸入，並將輸入值儲存到指定變數中。
 
 ### 範例: 輸入數值
@@ -198,6 +195,168 @@ bool yes = true;
 long long bigNumber = 9223372036854775807;
 
 unsigned int positiveNumber = 300;
+```
+
+## String
+
+*更詳細的內容請參閱[W3schools](https://www.w3schools.com/c/c_strings.php)的教學*
+
+C沒有內建的`string`變數(但其他程式語言通常會有)，所以在創建字串變數時就需要使用`char`建立字元[陣列](http://noahsarktw.com/2024/12/06/basic-c-lang/#%E9%99%A3%E5%88%97)來代替`string`。
+例如：
+```c
+char hello[] = "hello world";
+```
+**注意，一定要用雙引號 `"` ，不能用單引號 `'`**
+
+輸出字串時，要使用 `%s` 這個佔位符：
+
+```c
+#include <stdio.h>
+
+int main() {
+    char hello[] = "hello world";
+    printf("%s", hello);
+}
+```
+
+## bool
+C語言在C99之前並沒有內建`bool`這個型態的變數。不過你可以使用`stdbool.h`這個函式庫來加入`bool`變數。或是用`_Bool`這個型態(限C99和之後的版本)。
+
+範例(不引入`stdbool.h`，限C99和之後的版本)：
+```c
+#include <stdio.h>
+
+int main() {
+    _Bool a = 1;
+    _Bool b = 0;
+
+    printf("%d\n", a);
+    printf("%d", b);
+}
+```
+
+如果引入`stdbool.h`，就可以把`bool`的值使用`true`或`false`來代替`1`跟`0`：
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    bool a = true;
+    bool b = false;
+
+    bool c = 1;
+    bool d = 0;
+
+    printf("%d\n", a);
+    printf("%d\n", b);
+    printf("%d\n", c);
+    printf("%d\n", d);
+}
+```
+
+## 佔位符
+
+佔位符用在格式化輸出時，指定如何顯示變數的內容。例如，在C語言的`printf`函式中，我們使用不同的佔位符來表示變數的型態。這些佔位符可以指明數值的格式（如整數、小數點後的位數等）。
+
+常見佔位符與資料型態：
+| 資料型態            | 佔位符    | 說明                                    |
+|---------------------|-----------|-----------------------------------------|
+| `int`              | `%d`      | 帶符號的十進制整數                       |
+| `unsigned int`     | `%u`      | 無符號十進制整數                         |
+| `char`             | `%c`      | 單個字符                                |
+| `double`           | `%lf`     | 雙精度浮點數                            |
+| `float`            | `%f`      | 單精度浮點數（`printf`中會自動轉為`double`） |
+| `bool`             | `%d`      | 布林值（0 表示`false`，1 表示`true`）     |
+| `long`             | `%ld`     | 長整數                                  |
+| `unsigned long`    | `%lu`     | 無符號長整數                            |
+| `long long`        | `%lld`    | 長長整數                                |
+| `unsigned long long`| `%llu`    | 無符號長長整數                          |
+| `short`            | `%hd`     | 短整數                                  |
+| `unsigned short`   | `%hu`     | 無符號短整數                            |
+| `size_t`           | `%zu`     | 無符號大小型別，用於物件大小            |
+| `int*`（指標）      | `%p`      | 指標地址，以十六進制表示                 |
+| `char*`（字串）     | `%s`      | 字串（以 `null` 結尾）                   |
+
+
+
+範例：
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int number = -123;
+    unsigned int positiveNumber = 300;
+    char letter = 'A';
+    double pi = 3.14159265358979;
+    float smallPi = 3.14f;
+    bool isTrue = true;  // bool的值除了可以用0跟1，也可以用true(代表1)跟false(代表0)來當變數值
+    long bigNumber = 9223372036854775807;
+    unsigned long bigUnsignedNumber = 4294967295;
+    long long veryBigNumber = 9223372036854775807LL;
+    unsigned long long veryBigUnsignedNumber = 18446744073709551615ULL;
+    short smallNumber = -32000;
+    unsigned short smallPositiveNumber = 65000;
+    size_t objectSize = sizeof(int);
+    char* string = "Hello, World!";
+    int* pointer = &number;
+
+    printf("int: %d\n", number);
+    printf("unsigned int: %u\n", positiveNumber);
+    printf("char: %c\n", letter);
+    printf("double: %lf\n", pi);
+    printf("float: %f\n", smallPi);
+    printf("bool (as int): %d\n", isTrue);
+    printf("bool (as true/false): %s\n", isTrue ? "true" : "false");
+    printf("long: %ld\n", bigNumber);
+    printf("unsigned long: %lu\n", bigUnsignedNumber);
+    printf("long long: %lld\n", veryBigNumber);
+    printf("unsigned long long: %llu\n", veryBigUnsignedNumber);
+    printf("short: %hd\n", smallNumber);
+    printf("unsigned short: %hu\n", smallPositiveNumber);
+    printf("size_t: %zu\n", objectSize);
+    printf("string: %s\n", string);
+    printf("pointer address: %p\n", pointer);
+
+    return 0;
+}
+```
+
+輸出結果
+
+```bash
+int: -123
+unsigned int: 300
+char: A
+double: 3.141593
+float: 3.140000
+bool (as int): 1
+bool (as true/false): true
+long: 9223372036854775807
+unsigned long: 4294967295
+long long: 9223372036854775807
+unsigned long long: 18446744073709551615
+short: -32000
+unsigned short: 65000
+size_t: 4
+string: Hello, World!
+pointer address: 0x7ffeea2db9bc
+```
+
+---
+
+**浮點數精度控制**：
+   - 可以用格式指定小數點位數，例如：`%.2f` 表示輸出小數點後兩位數的浮點數。
+
+```c
+#include <stdio.h>
+
+int main() {
+    float pi = 3.14159;
+    printf("Pi (2 decimals): %.2f\n", pi); // 輸出: 3.14
+    return 0;
+}
 ```
 
 # `if else`判斷式
@@ -341,4 +500,405 @@ while (i < 5) {
 ```
 - 初始值 `i = 0` 在迴圈外設定。
 - 每次檢查 `i < 5`，滿足條件則執行。
-- `i++` 更新變數以避免無限迴圈。(因為如果不更新變數，輸出的內容會一直是`0`)
+- `i++` 更新變數以避免無限迴圈。(因為如果不更新變數，輸出的內容會一直是`0`，就無法達成`i < 5`這個條件，就會形成無限迴圈)
+
+## 巢狀迴圈
+
+就是在一個迴圈內加入另一個迴圈。執行的順序會是最裡面的迴圈先執行，執行完成後才會輪到他外層的迴圈執行。
+假如有一個三層的巢狀迴圈，那執行順序就會是第三層 -> 第二層 -> 第一層。
+
+用九九乘法表舉例：
+因為九九乘法表裡面有兩個會變動的數值 - 乘數跟被乘數，所以會用到兩層的for巢狀迴圈。
+
+首先設定用來控制乘數的迴圈：
+```c
+#include <stdio.h>
+
+int main() {
+    for (int i = 1; i <= 9; i++) {
+        printf("\n");
+    }
+}
+```
+接下來設定顯示被乘數和結果的迴圈：
+```c
+#include <stdio.h>
+
+int main() {
+    for (int i = 1; i <= 9; i++) {
+        for (int j = 1; j <= 9; j++) {
+            printf("%d*%d=%d\t", i, j, i * j);
+        }
+        printf("\n");
+    }
+}
+```
+
+這會在終端機顯示以下內容：
+```bash
+1*1=1	1*2=2	1*3=3	1*4=4	1*5=5	1*6=6	1*7=7	1*8=8	1*9=9	
+2*1=2	2*2=4	2*3=6	2*4=8	2*5=10	2*6=12	2*7=14	2*8=16	2*9=18	
+3*1=3	3*2=6	3*3=9	3*4=12	3*5=15	3*6=18	3*7=21	3*8=24	3*9=27	
+4*1=4	4*2=8	4*3=12	4*4=16	4*5=20	4*6=24	4*7=28	4*8=32	4*9=36	
+5*1=5	5*2=10	5*3=15	5*4=20	5*5=25	5*6=30	5*7=35	5*8=40	5*9=45	
+6*1=6	6*2=12	6*3=18	6*4=24	6*5=30	6*6=36	6*7=42	6*8=48	6*9=54	
+7*1=7	7*2=14	7*3=21	7*4=28	7*5=35	7*6=42	7*7=49	7*8=56	7*9=63	
+8*1=8	8*2=16	8*3=24	8*4=32	8*5=40	8*6=48	8*7=56	8*8=64	8*9=72	
+9*1=9	9*2=18	9*3=27	9*4=36	9*5=45	9*6=54	9*7=63	9*8=72	9*9=81
+```
+
+## break跟continue
+
+### break
+`break`可以在迴圈達成某項條件時結束(跳出)這個迴圈。
+
+例如在`while`迴圈，我想要在迴圈數到5的時候結束:
+```c
+#include <stdio.h>
+
+int main() {
+    int i = 0;
+
+    while (1) { // 這裡使用無限迴圈
+        printf("%d\n", i);
+        i++;
+
+        if (i == 5) {
+            break; // 當 i 等於 5 時，跳出迴圈
+        }
+    }
+
+    printf("迴圈結束\n");
+
+    return 0;
+}
+```
+
+這個程式會顯示這些內容:
+```bash
+0
+1
+2
+3
+4
+迴圈結束
+```
+當`i`等於`5`時，`break`語句會跳出`while`迴圈，程式繼續執行迴圈後的程式碼。
+
+### continue
+`continue` 可以在迴圈達成某項條件時跳過當前迴圈的剩餘部分，直接進入下一次迴圈。
+例如在 `for` 迴圈中，我想要跳過數值為 3 的迴圈：
+
+```c
+#include <stdio.h>
+
+int main() {
+    for (int i = 0; i < 5; i++) {
+        if (i == 3) {
+            continue; // 當 i 等於 3 時，跳過本次迴圈
+        }
+        printf("%d\n", i);
+    }
+
+    printf("迴圈結束\n");
+
+    return 0;
+}
+```
+這個程式會顯示這些內容：
+
+```bash
+0
+1
+2
+4
+迴圈結束
+```
+當`i`等於`3`時，`continue`語句會跳過本次迴圈的剩餘部分，直接進入下一次迴圈，程式繼續執行後面的迴圈。
+
+# 陣列
+陣列是一種資料結構，用來儲存多個相同型別的變數，並且可以通過索引來訪問每個元素。
+要建立陣列，要定義資料類型和設定陣列名稱，然後在後面加一個`[]`。
+```c
+int number[] = {1, 2, 3, 4, 5};
+```
+陣列的排列是從`0`開始的，不是從`1`開始。
+所以上面的`number[]`排列順序就是
+```c
+int number[] = {1, 2, 3, 4, 5};
+//              0  1  2  3  4
+```
+
+如果需要使用陣列的某個內容，例如我想顯示陣列中的第3個數字：
+```c
+#include <stdio.h>
+
+int main() {
+    int number[] = {1, 2, 3, 4, 5};
+
+    printf("%d", number[2]);
+}
+```
+
+如果要修改陣列的內容，就要用<陣列名稱[你要修改的某個內容]>，例如我要修改`number[]`的第3個內容，把它從`4`改成`10`：
+```c
+int number[] = {1, 2, 3, 4, 5};
+
+number[3] = 10;
+```
+
+這樣這個陣列現在就變成`1, 2, 3, 10, 5`了。
+
+---
+
+如果要把陣列的內容輸出出來，可以使用`for`迴圈。
+```c
+#include <stdio.h>
+
+int main() {
+    int number[] = {1, 2, 3, 4, 5};
+
+    for (int i = 0; i < 5; i++) {
+        printf("%d, ", number[i]);
+    }
+}
+```
+
+## 多維陣列
+就是在陣列裡放入其他的陣列。可以用$x$跟$y$或是表格來理解。例如我需要一個二維陣列：
+
+```c
+int m[3][5] = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}};
+```
+寫得好看一些：
+```c
+int m[3][5] = {
+    {1, 2, 3, 4, 5},
+    {6, 7, 8, 9, 10},
+    {11, 12, 13, 14, 15};
+}
+```
+
+如果要取用多維陣列中的某個數值，例如要顯示第2層陣列的第三個數值：
+```c
+#include <stdio.h>
+
+int main() {
+    int m[3][5] = {
+        {1, 2, 3, 4, 5},
+        {6, 7, 8, 9, 10},
+        {11, 12, 13, 14, 15}
+    };
+
+    printf("%d", m[1][2]);
+}
+```
+
+如果要顯示這個二維陣列中的所有內容，可以用巢狀的`for`迴圈：
+
+```c
+#include <stdio.h>
+
+int main() {
+    int m[3][5] = {
+        {1, 2, 3, 4, 5},
+        {6, 7, 8, 9, 10},
+        {11, 12, 13, 14, 15}
+    };
+
+    // 使用巢狀迴圈遍歷二維陣列
+    for (int i = 0; i < 3; i++) {       // 遍歷行
+        for (int j = 0; j < 5; j++) {   // 遍歷列
+            printf("%d ", m[i][j]);     // 輸出元素
+        }
+        printf("\n");                   // 換行顯示每一行
+    }
+
+    return 0;
+}
+```
+
+三維陣列可以用$x，y，z$的方式來理解，因為三維陣列就是一個立體的圖形。
+三維陣列在定義時會需要三個`[]`，例如：
+```c
+int m[][][]
+```
+
+以下面的範例來說，可以把第一個`[]`看成$y$，第二個`[]`看成$x$，第三個`[]`看成$z$。
+
+```c
+#include <stdio.h>
+
+int main() {
+    int m[3][5][2] = {
+        {
+            {1, 2, 3, 4, 5},
+            {6, 7, 8, 9, 10},
+            {11, 12, 13, 14, 15}
+        },
+        {
+            {16, 17, 18, 19, 20},
+            {21, 22, 23, 24, 25},
+            {26, 27, 28, 29, 30}
+        }
+    };
+}
+```
+
+可以理解成一個長3寬５，高度2的立方體。
+
+如果要顯示這個陣列的內容，要用到3層的for巢狀迴圈：
+```c
+#include <stdio.h>
+
+int main() {
+    int m[2][3][5] = {
+        {
+            {1, 2, 3, 4, 5},
+            {6, 7, 8, 9, 10},
+            {11, 12, 13, 14, 15}
+        },
+        {
+            {16, 17, 18, 19, 20},
+            {21, 22, 23, 24, 25},
+            {26, 27, 28, 29, 30}
+        }
+    };
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 5; k++) {
+                printf("m[%d][%d][%d] = %d\n", i, j, k, m[i][j][k]);
+            }
+        }
+    }
+
+    return 0;
+}
+```
+
+# 函式
+函式是用來封裝一段可以重複使用的程式碼，並且可以通過呼叫函式名稱來執行這段程式碼。
+例如我想要顯示很多次`10+10`的結果，如果不使用函式會長這樣:
+
+```c
+#include <stdio.h>
+
+int main() {
+    printf("10 + 10 = %d\n", 10 + 10);
+    printf("10 + 10 = %d\n", 10 + 10);
+    printf("10 + 10 = %d\n", 10 + 10);
+    return 0;
+}
+```
+
+使用函式(在`main()`裡面輸入函式名稱+括號):
+
+```c
+#include <stdio.h>
+
+void add() {
+    printf("10 + 10 = %d\n", 10 + 10);
+}
+
+int main() {
+    add();  //函式呼叫
+    add();  //函式呼叫
+    add();  //函式呼叫
+    return 0;
+}
+```
+
+需要寫的程式碼變少了。
+
+## 函式參數
+在函式中使用變數的目的，是讓函式能夠接收輸入值（**參數**），並根據這些值進行計算或操作。
+
+需要使用幾個參數，就新增幾個參數。例如我要三個參數：
+```c
+int add(int a, int b, int c) {
+    //內容....
+}
+```
+如果要兩個：
+```c
+int add(int a, int b) {
+    //內容....
+}
+```
+
+---
+
+例如，你可以讓函式 `add` 接收兩個數字作為參數，然後計算它們的和，像這樣：
+
+```c
+#include <stdio.h>
+
+// 定義函式，接收兩個整數參數 a 和 b，並打印它們的和
+void add(int a, int b) {
+    printf("%d + %d = %d\n", a, b, a + b);
+}
+
+int main() {
+    // 呼叫函式並傳遞不同的值
+    add(10, 20);
+    add(5, 15);
+    add(100, 200);
+    return 0;
+}
+```
+
+1. **函式參數（parameters）**  
+   在定義函式時，括號內的變數（例如 `int a, int b`）稱為**參數**。它們是函式的輸入值，必須在呼叫函式時提供具體的數值。
+   
+2. **函式呼叫（function call）**  
+   當你在 `main` 中呼叫 `add(10, 20)` 時，數值 `10` 和 `20` 分別賦值給 `a` 和 `b`，函式會根據這些值進行計算。
+
+3. **重複使用**  
+   現在 `add` 函式可以針對不同的輸入值計算和，不需要每次都重寫計算邏輯。
+
+### 參數回傳
+有時候，你可能希望函式不直接輸出，而是將結果傳回給使用者，讓使用者決定如何使用。這時就要使用 `return`。
+
+例如：
+
+```c
+#include <stdio.h>
+
+// 定義函式，回傳兩個整數的和
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result1 = add(10, 20);  // 呼叫函式並接收回傳值
+    int result2 = add(5, 15);
+
+    printf("Result 1: %d\n", result1);
+    printf("Result 2: %d\n", result2);
+
+    return 0;
+}
+```
+
+回傳類型 `int add(int a, int b)` 的 `int` 要根據回傳值的類型修改。例如在上面範例的 `add()` 回傳的數值會是整數，也就是 `int`，所以在設定函式時就要寫 `int`。如果回傳的值是 `double`，那就要改成 `double`。
+
+```c
+#include <stdio.h>
+
+double add(double a, double b) {
+    return a + b;
+}
+
+int main() {
+    double result1 = add(10.5, 20.6);
+    double result2 = add(5.7, 15.8);
+
+    printf("Result 1: %f\n", result1);
+    printf("Result 2: %f\n", result2);
+
+    return 0;
+}
+```
+
+這樣這個函式就可以進行小數計算。

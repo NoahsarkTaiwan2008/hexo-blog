@@ -367,16 +367,16 @@ codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: default
-    dark: stackoverflow-dark
+    light: atom-one-light
+    dark: atom-one-dark
   prism:
     light: prism
     dark: prism-dark
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Available values: default | flat | mac
-    style:
+    style: mac
   # Fold code block
   fold:
     enable: false
@@ -414,24 +414,11 @@ github_banner:
   enable: false
   permalink: https://github.com/NoahsarkTaiwan2008
 
-
-# ---------------------------------------------------------------
-# Font Settings
-# ---------------------------------------------------------------
-# Find fonts on Google Fonts (https://fonts.google.com)
-# All fonts set here will have the following styles:
-#   light | light italic | normal | normal italic | bold | bold italic
-# Be aware that setting too much fonts will cause site running slowly
-# ---------------------------------------------------------------
-# Web Safe fonts are recommended for `global` (and `title`):
-# Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS
-# ---------------------------------------------------------------
-
 font:
-  enable: false
+  enable: true
 
   # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
-  host:
+  host: https://fonts.googleapis.com
 
   # Font options:
   # `external: true` will load this font family from `host` above.
@@ -441,30 +428,30 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family: Lato
-    size:
+    family: "'Cascadia Mono', 'Noto Sans TC', monospace"
+    size: 1em
 
   # Font settings for site title (.site-title).
   title:
     external: true
-    family:
-    size:
+    family: "'Cascadia Mono', 'Noto Sans TC', monospace"
+    size: 1.5em
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family:
-    size:
+    family: "'Cascadia Mono', 'Noto Sans TC', monospace"
+    size: 1.2em
 
   # Font settings for posts (.post-body).
   posts:
     external: true
-    family:
+    family: "'Cascadia Mono', 'Noto Sans TC', monospace"
 
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family:
+    family: "'Cascadia Mono', monospace"
 
 
 # ---------------------------------------------------------------
@@ -643,14 +630,14 @@ motion:
 # Progress bar in the top during page loading.
 # For more information: https://github.com/CodeByZach/pace
 pace:
-  enable: flase
+  enable: false
   # All available colors:
   # black | blue | green | orange | pink | purple | red | silver | white | yellow
-  color: blue
+  color: red
   # All available themes:
   # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
   # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
-  theme: minimal
+  theme: big-counter
 
 # Generate a ribbon in your website with HTML5 canvas.
 # For more information: https://github.com/hustcc/ribbon.js
